@@ -1,0 +1,69 @@
+# Prepare TPCC dataset for InnoDB (COMPRESSED or not)
+sysbench ./tpcc.lua prepare \
+  --mysql-socket=/var/run/mysqld/mysqld.sock \
+  --mysql-user=root \
+  --mysql-password=mysql \
+  --mysql-db=inno \
+  --tables=1 \
+  --scale=100 \
+  --db-driver=mysql \
+  --mysql-table-options="ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=4"
+
+# Prepare TPCC dataset for MyRocks
+sysbench ./tpcc.lua prepare \
+  --mysql-socket=/var/run/mysqld/mysqld.sock \
+  --mysql-user=root \
+  --mysql-password=mysql \
+  --mysql-db=myrocks \
+  --tables=1 \
+  --scale=100 \
+  --use_fk=0 \
+  --mysql_storage_engine=rocksdb \
+  --mysql_table_options="COLLATE latin1_bin" \
+  --trx_level=RC \
+  --db-driver=mysql
+
+# Run TPCC benchmark for InnoDB
+sysbench ./tpcc.lua run \
+  --mysql-socket=/var/run/mysqld/mysqld.sock \
+  --mysql-user=root \
+  --mysql-password=mysql \
+  --mysql-db=inno \
+  --time=300 \
+  --threads=4 \
+  --report-interval=60 \
+  --tables=1 \
+  --scale=100 \
+  --trx_level=RC \
+  --db-driver=mysql
+
+# Run TPCC benchmark for InnoDB (COMPRESSED 4K)
+sysbench ./tpcc.lua run \
+  --mysql-socket=/var/run/mysqld/mysqld.sock \
+  --mysql-user=root \
+  --mysql-password=mysql \
+  --mysql-db=inno4k \
+  --time=300 \
+  --threads=4 \
+  --report-interval=60 \
+  --tables=1 \
+  --scale=100 \
+  --trx_level=RC \
+  --db-driver=mysql
+
+# Run TPCC benchmark for MyRocks
+sysbench ./tpcc.lua run \
+  --mysql-socket=/var/run/mysqld/mysqld.sock \
+  --mysql-user=root \
+  --mysql-password=mysql \
+  --mysql-db=myrocks \
+  --time=300 \
+  --threads=4 \
+  --report-interval=60 \
+  --tables=1 \
+  --scale=100 \
+  --use_fk=0 \
+  --mysql_storage_engine=rocksdb \
+  --mysql_table_options="COLLATE latin1_bin" \
+  --trx_level=RC \
+  --db-driver=mysql
