@@ -1,8 +1,3 @@
-Read-only test:
-InnoDB: sysbench oltp_read_only prepare --mysql-socket=/var/run/mysqld/mysqld.sock --mysql-user=root --mysql-password=mysql --mysql-db=inno_normal --tables=1 --table-size=1000000 --db-driver=mysql
-MyRocks: sysbench oltp_read_only prepare --mysql-socket=/var/run/mysqld/mysqld.sock --mysql-user=root --mysql-password=mysql --mysql_storage_engine=rocksdb --mysql-db=myrocks_normal --tables=1 --table-size=1000000 --db-driver=mysql
 
-
-/////////////////////////////////////////////////////
 
 
