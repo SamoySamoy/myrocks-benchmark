@@ -20,7 +20,7 @@ SQL statistics:
     reconnects:                          0      (0.00 per sec.)
 
 General statistics:
-    total time:                          300.4223s
+total time:                          300.4223s
     total number of events:              35162
 
 Latency (ms):
