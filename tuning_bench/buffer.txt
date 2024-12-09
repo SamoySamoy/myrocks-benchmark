@@ -1,0 +1,15 @@
+SHOW VARIABLES LIKE 'rocksdb_block_cache_size';
+innodb: default innodb_buffer_pool_size -- 536870912 (512MB)
+myrocks: default rocksdb_block_cache_size -- 536870912 (512MB)
+
+-- check for 3GB buffer 
+SET GLOBAL innodb_buffer_pool_size = 3221225472; 
+SET GLOBAL rocksdb_block_cache_size = 3221225472;
+
+--check for 5GB buffer
+SET GLOBAL innodb_buffer_pool_size = 5368709120;
+SET GLOBAL rocksdb_block_cache_size = 5368709120;
+
+--chek for 7GB buffer
+SET GLOBAL innodb_buffer_pool_size = 7516192768;
+SET GLOBAL rocksdb_block_cache_size = 7516192768;
