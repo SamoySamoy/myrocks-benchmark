@@ -1,0 +1,2 @@
+(mpstat 1 > cpu_usage.log & iostat -x 1 > iops_log.txt & sysbench ./tpcc.lua run --mysql-socket=/var/run/mysqld/mysqld.sock --mysql-user=root --mysql-password=mysql --mysql-db=inno --time=1200 --threads=4 --report-interval=90 --tables=1 --scale=100 --trx_level=RC --db-driver=mysql; kill %1; kill %2) 
+SET GLOBAL innodb_buffer_pool_size = 5368709120; 
